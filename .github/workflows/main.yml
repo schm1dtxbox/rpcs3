@@ -15,7 +15,7 @@ jobs:
       RELEASE_MESSAGE: "../GitHubReleaseMessage.txt"
       ARTDIR: "./build"
       BUILD_ARTIFACTSTAGINGDIRECTORY: "./build"
-      QT_VER: '6.8.2'
+      QT_VER: '6.7.3'
       QT_VER_MAIN: '6'
       LLVM_COMPILER_VER: '16'
 
