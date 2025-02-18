@@ -5,7 +5,7 @@ on: [push, workflow_dispatch]
 jobs:
   Build:
     name: Mac OS X
-    runs-on: macos-13 
+    runs-on: macos-15 
     env:
       CCACHE_DIR: "/tmp/ccache_dir"
       CCACHE_MAXSIZE: 300M
