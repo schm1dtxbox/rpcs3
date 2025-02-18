@@ -26,7 +26,7 @@ export HOMEBREW_NO_INSTALL_CLEANUP=1
 sudo rm -rf /usr/local/Cellar/curl /usr/local/opt/curl
 /usr/local/bin/brew install -f --overwrite curl
 /usr/local/bin/brew uninstall -f --ignore-dependencies ffmpeg
-/usr/local/bin/brew install -f --build-from-source ffmpeg@5 || true
+/usr/local/bin/brew install -f ffmpeg@5 || true
 /usr/local/bin/brew install -f --overwrite python || true
 /usr/local/bin/brew link --overwrite python || true
 /usr/local/bin/brew install -f --overwrite nasm ninja p7zip ccache pipenv #create-dmg
@@ -78,7 +78,7 @@ if [ ! -d "/tmp/Qt/$QT_VER" ]; then
   "$BREW_X64_PATH/bin/pipenv" run pip3 install py7zr requests semantic_version lxml
   mkdir -p "$QT_VER/macos" ; ln -s "macos" "$QT_VER/clang_64"
   sed -i '' 's/args\.version \/ derive_toolchain_dir(args) \/ //g' "$WORKDIR/qt-downloader/qt-downloader" # Qt 6.8.1 workaround
-  "$BREW_X64_PATH/bin/pipenv" run "$WORKDIR/qt-downloader/qt-downloader" macos desktop "$QT_VER" clang_64 --opensource --addons qtmultimedia qtimageformats # -o "$QT_VER/clang_64"
+  "$BREW_X64_PATH/bin/pipenv" run "$WORKDIR/qt-downloader/qt-downloader" macos desktop "$QT_VER" clang_64 --opensource --addons qtmultimedia qtimageformats
 fi
 
 cd "$WORKDIR"
