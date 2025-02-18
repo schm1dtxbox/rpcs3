@@ -1,0 +1,34 @@
+name: Build
+
+on: [push, workflow_dispatch]
+
+jobs:
+  Build:
+    name: Mac OS X
+    runs-on: macos-13 
+    env:
+      CCACHE_DIR: "/tmp/ccache_dir"
+      CCACHE_MAXSIZE: 300M
+      CI_HAS_ARTIFACTS: true
+      UPLOAD_COMMIT_HASH: 8e21bdbc40711a3fccd18fbf17b742348b0f4281
+      UPLOAD_REPO_FULL_NAME: "RPCS3/rpcs3-binaries-mac-arm64"
+      RELEASE_MESSAGE: "../GitHubReleaseMessage.txt"
+      ARTDIR: "./build"
+      BUILD_ARTIFACTSTAGINGDIRECTORY: "./build"
+      QT_VER: '6.8.1'
+      QT_VER_MAIN: '6'
+      LLVM_COMPILER_VER: '16'
+
+    steps:
+    - uses: actions/checkout@main
+    - name: Build
+      run: |
+        chmod +x ./.ci/build-mac-arm64.sh
+        chmod +x ./.ci/deploy-mac-arm64.sh
+        chmod +x ./.ci/optimize-mac.sh
+        ./.ci/build-mac-arm64.sh
+        
+    - name: Upload
+      uses: actions/upload-artifact@v4.4.3
+      with:
+        path: ./build/
