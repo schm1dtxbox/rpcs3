@@ -79,8 +79,8 @@ export SDL2_DIR="$BREW_ARM64_PATH/opt/sdl2/lib/cmake/SDL2"
 
 export PATH="$BREW_X64_PATH/opt/llvm@$LLVM_COMPILER_VER/bin:$WORKDIR/qt-downloader/$QT_VER/clang_64/bin:$BREW_BIN:$BREW_SBIN:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Library/Apple/usr/bin:$PATH"
 export LDFLAGS="-L$BREW_ARM64_PATH/lib $BREW_ARM64_PATH/opt/ffmpeg@5/lib/libavcodec.dylib $BREW_ARM64_PATH/opt/ffmpeg@5/lib/libavformat.dylib $BREW_ARM64_PATH/opt/ffmpeg@5/lib/libavutil.dylib $BREW_ARM64_PATH/opt/ffmpeg@5/lib/libswscale.dylib $BREW_ARM64_PATH/opt/ffmpeg@5/lib/libswresample.dylib $BREW_ARM64_PATH/opt/llvm@$LLVM_COMPILER_VER/lib/c++/libc++.1.dylib $BREW_ARM64_PATH/lib/libSDL2.dylib $BREW_ARM64_PATH/lib/libGLEW.dylib $BREW_ARM64_PATH/opt/llvm@$LLVM_COMPILER_VER/lib/libunwind.1.dylib -Wl,-rpath,$BREW_ARM64_PATH/lib"
-export CPPFLAGS="-I$BREW_ARM64_PATH/include -I$BREW_X64_PATH/include -no-pie -D__MAC_OS_X_VERSION_MIN_REQUIRED=130000"
-export CFLAGS="-D__MAC_OS_X_VERSION_MIN_REQUIRED=130000"
+export CPPFLAGS="-I$BREW_ARM64_PATH/include -I$BREW_X64_PATH/include -no-pie -D__MAC_OS_X_VERSION_MIN_REQUIRED=140000"
+export CFLAGS="-D__MAC_OS_X_VERSION_MIN_REQUIRED=140000"
 export LIBRARY_PATH="$BREW_ARM64_PATH/lib"
 export LD_LIBRARY_PATH="$BREW_ARM64_PATH/lib"
 
@@ -101,7 +101,7 @@ sed -i '' "s/extern const double NSAppKitVersionNumber;/const double NSAppKitVer
 rm -rf build
 mkdir build && cd build || exit 1
 
-export MACOSX_DEPLOYMENT_TARGET=13.0
+export MACOSX_DEPLOYMENT_TARGET=14.0
 
 "$BREW_X64_PATH/bin/cmake" .. \
     -DUSE_SDL=ON \
@@ -133,7 +133,7 @@ export MACOSX_DEPLOYMENT_TARGET=13.0
     -DCMAKE_IGNORE_PREFIX_PATH=/opt/homebrew/opt \
     -DCMAKE_SYSTEM_PROCESSOR=arm64 \
     -DCMAKE_TOOLCHAIN_FILE=buildfiles/cmake/TCDarwinARM64.cmake \
-    -DCMAKE_CXX_FLAGS="-D__MAC_OS_X_VERSION_MIN_REQUIRED=130000" \
+    -DCMAKE_CXX_FLAGS="-D__MAC_OS_X_VERSION_MIN_REQUIRED=140000" \
     -G Ninja
 
 "$BREW_PATH/bin/ninja"; build_status=$?;
